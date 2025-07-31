@@ -1,0 +1,350 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 10%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-[#0A0A0A] text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Notion-inspired scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  border: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+/* Enhanced focus states */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500;
+}
+
+/* Notion-inspired hover effects */
+.notion-hover {
+  @apply transition-all duration-150 ease-out hover:bg-white/5;
+}
+
+.notion-card {
+  @apply bg-[#0F0F0F] border border-[#1A1A1A] rounded-lg backdrop-blur-sm;
+}
+
+.notion-input {
+  @apply bg-[#1A1A1A] border border-[#2A2A2A] text-white placeholder-gray-500 rounded-lg focus:border-blue-500 focus:outline-none transition-colors;
+}
+
+.notion-button {
+  @apply px-4 py-2 rounded-lg font-medium transition-all duration-150 ease-out;
+}
+
+.notion-button-primary {
+  @apply notion-button bg-blue-600 hover:bg-blue-700 text-white;
+}
+
+.notion-button-secondary {
+  @apply notion-button bg-[#1A1A1A] hover:bg-[#2A2A2A] text-gray-300 hover:text-white border border-[#2A2A2A];
+}
+
+.notion-button-ghost {
+  @apply notion-button text-gray-400 hover:text-white hover:bg-[#1A1A1A];
+}
+
+/* Email specific styling */
+.email-item {
+  @apply transition-all duration-150 ease-out;
+}
+
+.email-item:hover {
+  @apply bg-[#0F0F0F];
+}
+
+.email-item.selected {
+  @apply bg-[#1A1A1A];
+}
+
+.email-item.unread {
+  @apply border-l-2 border-l-blue-500;
+}
+
+.email-item.unread .email-sender {
+  @apply font-semibold text-white;
+}
+
+.email-item.unread .email-subject {
+  @apply font-medium text-white;
+}
+
+/* Folder navigation */
+.folder-item {
+  @apply flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer transition-all duration-150 ease-out text-gray-300 hover:bg-[#1A1A1A] hover:text-white;
+}
+
+.folder-item.active {
+  @apply bg-blue-600 text-white;
+}
+
+.folder-item:hover {
+  transform: translateX(2px);
+}
+
+/* Compose modal */
+.compose-modal {
+  @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4;
+}
+
+.compose-content {
+  @apply bg-[#0F0F0F] border border-[#2A2A2A] rounded-lg w-full max-w-2xl max-h-[80vh] overflow-hidden;
+}
+
+/* Gradient backgrounds */
+.gradient-blue-purple {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+}
+
+.gradient-purple-pink {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+}
+
+.gradient-gray {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+}
+
+/* Loading states */
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Text selection */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: white;
+}
+
+::-moz-selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: white;
+}
+
+/* Prose styling for email content */
+.prose-invert {
+  color: #e5e7eb;
+}
+
+.prose-invert h1, .prose-invert h2, .prose-invert h3, .prose-invert h4, .prose-invert h5, .prose-invert h6 {
+  color: #f9fafb;
+}
+
+.prose-invert strong {
+  color: #f9fafb;
+  font-weight: 600;
+}
+
+.prose-invert a {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.prose-invert a:hover {
+  color: #60a5fa;
+}
+
+.prose-invert blockquote {
+  border-left: 4px solid #374151;
+  padding-left: 1rem;
+  font-style: italic;
+  color: #9ca3af;
+}
+
+.prose-invert code {
+  background: #1f2937;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.875em;
+  color: #f9fafb;
+}
+
+.prose-invert pre {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.prose-invert pre code {
+  background: transparent;
+  padding: 0;
+}
+
+/* Status indicators */
+.status-online {
+  @apply bg-green-500;
+}
+
+.status-away {
+  @apply bg-yellow-500;
+}
+
+.status-busy {
+  @apply bg-red-500;
+}
+
+.status-offline {
+  @apply bg-gray-500;
+}
+
+/* Priority indicators */
+.priority-high {
+  @apply text-red-400;
+}
+
+.priority-normal {
+  @apply text-gray-400;
+}
+
+.priority-low {
+  @apply text-blue-400;
+}
+
+/* Attachment styling */
+.attachment-item {
+  @apply flex items-center gap-2 p-2 bg-[#1A1A1A] rounded border border-[#2A2A2A] hover:bg-[#2A2A2A] transition-colors cursor-pointer;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    @apply fixed inset-y-0 left-0 z-50 w-72 transform transition-transform duration-300 ease-in-out;
+  }
+  
+  .sidebar.hidden {
+    @apply -translate-x-full;
+  }
+  
+  .email-list {
+    @apply w-full;
+  }
+  
+  .email-view {
+    @apply fixed inset-0 z-40;
+  }
+}
+
+/* Search highlighting */
+.search-highlight {
+  @apply bg-yellow-500/20 text-yellow-200;
+}
+
+/* Notification badge */
+.notification-badge {
+  @apply absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full min-w-[16px] h-4 flex items-center justify-center px-1;
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced shadows */
+.shadow-notion {
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-notion-lg {
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.4),
+    0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+} 
